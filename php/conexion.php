@@ -1,15 +1,15 @@
 <?php
 	echo("a");
     $con = mysqli_init();
-    $servidorBD = "escomselecdbs.mysql.database.azure.com";
-	$usuarioBD = "diegopipebran";
-	$contrasenaBD = "ikc83mfL";
-	$nombreBD = "sys";
+    $servidorBD = process.env.MYSQL_URI;
+	$usuarioBD = process.env.MYSQL_USER;
+	$contrasenaBD = process.env.MYSQL_PASSWORD;
+	$nombreBD = process.env.MYSQL_DBNAME;
 
 	echo("medio");
 
-    mysqli_ssl_set($con, NULL, NULL, "/Users/macbook/Downloads/cacert.pem", NULL, NULL);
-	mysqli_real_connect($con, $servidorBD,$usuarioBD,$contrasenaBD,$nombreBD, 3306, MYSQLI_CLIENT_SSL);
+    mysqli_ssl_set($con, NULL, NULL, process.env.MYSQL_PEMFILE, NULL, NULL);
+	mysqli_real_connect($con, $servidorBD,$usuarioBD,$contrasenaBD,$nombreBD, process.env.MYSQL_PORT, MYSQLI_CLIENT_SSL);
 
 	echo("fin");
 ?>
